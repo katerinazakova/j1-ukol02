@@ -10,9 +10,7 @@ public class HlavniProgram {
     public void start() {
 
         zofka.setLocation(200, 200);
-
-
-        obdelnik(160, 80, Color.BLACK);
+        drawRectangle(160, 80, Color.BLACK);
 
         zofka.turnRight(90);
         zofka.move(160);
@@ -20,7 +18,7 @@ public class HlavniProgram {
         zofka.move(80);
         zofka.turnLeft(90);
 
-        ctverec(150, Color.BLACK);
+        drawSquare(150, Color.BLACK);
 
         zofka.penUp();
         zofka.turnLeft(180);
@@ -30,7 +28,7 @@ public class HlavniProgram {
         zofka.turnRight(180);
         zofka.penDown();
 
-        pravouhlyRovnoramennyTrojuhelnik(80, Color.BLUE );
+        drawRightAngledTriangle(80, Color.BLUE);
 
         zofka.penUp();
         zofka.turnRight(180);
@@ -40,14 +38,13 @@ public class HlavniProgram {
         zofka.move(50);
         zofka.penDown();
 
-
-        circel(8,20, Color.RED);
+        drawCircle(8, 20, Color.RED);
 
         zofka.penUp();
         zofka.move(70);
         zofka.penDown();
 
-        circel(8, 20, Color.RED);
+        drawCircle(8, 20, Color.RED);
 
         zofka.penUp();
         zofka.move(110);
@@ -56,11 +53,10 @@ public class HlavniProgram {
         zofka.turnRight(90);
         zofka.penDown();
 
-        circel(22,20,Color.GREEN);
+        drawCircle(22, 20, Color.GREEN);
 
         zofka.setLocation(710, 250);
-
-        equilateralTriangel(100, Color.ORANGE);
+        drawEquilateralTriangel(100, Color.ORANGE);
 
         zofka.penUp();
         zofka.turnRight(180);
@@ -70,18 +66,17 @@ public class HlavniProgram {
         zofka.turnRight(90);
         zofka.penDown();
 
-        circel(16,20, Color.MAGENTA);
+        drawCircle(16, 20, Color.MAGENTA);
 
+        zofka.setLocation(920, 100);
+        drawCircle(16, 20, Color.CYAN);
 
-        zofka.setLocation(920,100);
-
-        circel(16,20, Color.CYAN);
         zofka.penUp();
         zofka.turnRight(90);
         zofka.move(105);
         zofka.turnLeft(90);
         zofka.penDown();
-        circel(22,20, Color.CYAN);
+        drawCircle(22, 20, Color.CYAN);
 
         zofka.penUp();
         zofka.turnRight(90);
@@ -89,7 +84,7 @@ public class HlavniProgram {
         zofka.turnLeft(90);
         zofka.penDown();
 
-        circel(32, 20, Color.CYAN);
+        drawCircle(32, 20, Color.CYAN);
 
         zofka.penUp();
         zofka.turnLeft(90);
@@ -98,7 +93,7 @@ public class HlavniProgram {
         zofka.move(105);
         zofka.penDown();
 
-        circel(8, 20, Color.CYAN);
+        drawCircle(8, 20, Color.CYAN);
 
         zofka.penUp();
         zofka.turnLeft(180);
@@ -107,85 +102,66 @@ public class HlavniProgram {
         zofka.turnRight(90);
         zofka.move(186);
         zofka.penDown();
-        circel(8, 20, Color.CYAN);
-
-
-
-
-
-
-
-
-
-
-
-
+        drawCircle(8, 20, Color.CYAN);
 
     }
 
-    public void equilateralTriangel(double delkaStrany, Color barva){
-            zofka.setPenColor(barva);
-            zofka.turnRight(120);
-            zofka.move (delkaStrany);
-            zofka.turnRight(120);
-            zofka.move (delkaStrany);
-            zofka.turnRight(120);
-            zofka.move (delkaStrany);
-
-
-
-
+    public void drawEquilateralTriangel(double lenghtSide, Color colorLine) {
+        zofka.setPenColor(colorLine);
+        zofka.turnRight(120);
+        zofka.move(lenghtSide);
+        zofka.turnRight(120);
+        zofka.move(lenghtSide);
+        zofka.turnRight(120);
+        zofka.move(lenghtSide);
 
     }
-    public void ctverec (double delkaStrany, Color barva){
-        zofka.setPenColor(barva);
+
+    public void drawSquare(double lenghtSide, Color colorLine) {
+        zofka.setPenColor(colorLine);
         for (int i = 0; i < 4; i++) {
-            zofka.move(delkaStrany);
+            zofka.move(lenghtSide);
             zofka.turnLeft(90);
 
         }
     }
 
-    public void obdelnik (double delkaStranyA, double delkaStranyB, Color barva){
-        zofka.setPenColor(barva);
+    public void drawRectangle(double lenghtSideA, double lenghtSideB, Color colorLine) {
+        zofka.setPenColor(colorLine);
         for (int i = 0; i < 2; i++) {
             zofka.turnRight(90);
-            zofka.move(delkaStranyA);
+            zofka.move(lenghtSideA);
             zofka.turnRight(90);
-            zofka.move(delkaStranyB);
+            zofka.move(lenghtSideB);
         }
 
     }
-    public void circel(double delkaStrany, double pocetStran, Color barva){
-        zofka.setPenColor(barva);
-        var velikostStrany = delkaStrany;
-        var pocet = pocetStran;
-        var velikostUhlu = 180*((pocet-2)/pocet);
 
+    public void drawCircle(double lenghtSide, double numberSidesPolygon, Color colorLine) {
+        zofka.setPenColor(colorLine);
+        var sizeSide = lenghtSide;
+        var numberSides = numberSidesPolygon;
+        var sizeAngle = 180 * ((numberSides - 2) / numberSides);
 
-        for (int i = 0; i <(pocetStran); i++) {
-            zofka.move(delkaStrany);
+        for (int i = 0; i < (numberSidesPolygon); i++) {
+            zofka.move(lenghtSide);
             zofka.turnLeft(180);
-            zofka.turnLeft(velikostUhlu);
+            zofka.turnLeft(sizeAngle);
 
         }
 
 
     }
 
-
-
-    public void pravouhlyRovnoramennyTrojuhelnik(double delkaStrany, Color barva){
-        zofka.setPenColor(barva);
-        var velikostStrany = delkaStrany;
-        var velikostPrepony = Math.sqrt(2*Math.pow(velikostStrany, 2));
-        zofka.move(velikostStrany);
+    public void drawRightAngledTriangle(double lenghtSide, Color colorLine) {
+        zofka.setPenColor(colorLine);
+        var sizeSide = lenghtSide;
+        var sizeHypotenuse = Math.sqrt(2 * Math.pow(sizeSide, 2));
+        zofka.move(sizeSide);
         zofka.turnRight(90);
-        zofka.move(velikostStrany);
+        zofka.move(sizeSide);
         zofka.turnRight(135);
-        zofka.move(velikostPrepony);
-
-
+        zofka.move(sizeHypotenuse);
 
     }
 
