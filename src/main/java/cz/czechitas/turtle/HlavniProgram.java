@@ -38,13 +38,13 @@ public class HlavniProgram {
         zofka.move(50);
         zofka.penDown();
 
-        drawCircle(8, 20, Color.RED);
+        drawPolygon(8, 20, Color.RED);
 
         zofka.penUp();
         zofka.move(70);
         zofka.penDown();
 
-        drawCircle(8, 20, Color.RED);
+        drawPolygon(8, 20, Color.RED);
 
         zofka.penUp();
         zofka.move(110);
@@ -53,10 +53,10 @@ public class HlavniProgram {
         zofka.turnRight(90);
         zofka.penDown();
 
-        drawCircle(22, 20, Color.GREEN);
+        drawPolygon(22, 20, Color.GREEN);
 
         zofka.setLocation(710, 250);
-        drawEquilateralTriangel(100, Color.ORANGE);
+        drawEquilateralTriangle(100, Color.ORANGE);
 
         zofka.penUp();
         zofka.turnRight(180);
@@ -66,17 +66,17 @@ public class HlavniProgram {
         zofka.turnRight(90);
         zofka.penDown();
 
-        drawCircle(16, 20, Color.MAGENTA);
+        drawPolygon(16, 20, Color.MAGENTA);
 
         zofka.setLocation(920, 100);
-        drawCircle(16, 20, Color.CYAN);
+        drawPolygon(16, 20, Color.CYAN);
 
         zofka.penUp();
         zofka.turnRight(90);
         zofka.move(105);
         zofka.turnLeft(90);
         zofka.penDown();
-        drawCircle(22, 20, Color.CYAN);
+        drawPolygon(22, 20, Color.CYAN);
 
         zofka.penUp();
         zofka.turnRight(90);
@@ -84,7 +84,7 @@ public class HlavniProgram {
         zofka.turnLeft(90);
         zofka.penDown();
 
-        drawCircle(32, 20, Color.CYAN);
+        drawPolygon(32, 20, Color.CYAN);
 
         zofka.penUp();
         zofka.turnLeft(90);
@@ -93,7 +93,7 @@ public class HlavniProgram {
         zofka.move(105);
         zofka.penDown();
 
-        drawCircle(8, 20, Color.CYAN);
+        drawPolygon(8, 20, Color.CYAN);
 
         zofka.penUp();
         zofka.turnLeft(180);
@@ -102,60 +102,54 @@ public class HlavniProgram {
         zofka.turnRight(90);
         zofka.move(186);
         zofka.penDown();
-        drawCircle(8, 20, Color.CYAN);
+        drawPolygon(8, 20, Color.CYAN);
 
     }
 
-    public void drawEquilateralTriangel(double lenghtSide, Color colorLine) {
+    public void drawEquilateralTriangle(double length, Color colorLine) {
         zofka.setPenColor(colorLine);
-        zofka.turnRight(120);
-        zofka.move(lenghtSide);
-        zofka.turnRight(120);
-        zofka.move(lenghtSide);
-        zofka.turnRight(120);
-        zofka.move(lenghtSide);
+        for (int i = 0; i < 3; i++) {
+            zofka.turnRight(120);
+            zofka.move(length);
+        }
 
     }
 
-    public void drawSquare(double lenghtSide, Color colorLine) {
+    public void drawSquare(double lengthSide, Color colorLine) {
         zofka.setPenColor(colorLine);
         for (int i = 0; i < 4; i++) {
-            zofka.move(lenghtSide);
+            zofka.move(lengthSide);
             zofka.turnLeft(90);
 
         }
     }
 
-    public void drawRectangle(double lenghtSideA, double lenghtSideB, Color colorLine) {
+    public void drawRectangle(double lengthSideA, double lengthSideB, Color colorLine) {
         zofka.setPenColor(colorLine);
         for (int i = 0; i < 2; i++) {
             zofka.turnRight(90);
-            zofka.move(lenghtSideA);
+            zofka.move(lengthSideA);
             zofka.turnRight(90);
-            zofka.move(lenghtSideB);
+            zofka.move(lengthSideB);
         }
 
     }
 
-    public void drawCircle(double lenghtSide, double numberSidesPolygon, Color colorLine) {
+    public void drawPolygon(double lengthSide, int numberOfPolygonSides, Color colorLine) {
         zofka.setPenColor(colorLine);
-        var sizeSide = lenghtSide;
-        var numberSides = numberSidesPolygon;
-        var sizeAngle = 180 * ((numberSides - 2) / numberSides);
 
-        for (int i = 0; i < (numberSidesPolygon); i++) {
-            zofka.move(lenghtSide);
-            zofka.turnLeft(180);
-            zofka.turnLeft(sizeAngle);
+        double angle = 360 / numberOfPolygonSides;
 
+        for (int i = 0; i < numberOfPolygonSides; i++) {
+            zofka.move(lengthSide);
+            zofka.turnRight(angle);
         }
-
 
     }
 
-    public void drawRightAngledTriangle(double lenghtSide, Color colorLine) {
+    public void drawRightAngledTriangle(double sizeSide, Color colorLine) {
         zofka.setPenColor(colorLine);
-        var sizeSide = lenghtSide;
+
         var sizeHypotenuse = Math.sqrt(2 * Math.pow(sizeSide, 2));
         zofka.move(sizeSide);
         zofka.turnRight(90);
